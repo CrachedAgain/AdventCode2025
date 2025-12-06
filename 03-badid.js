@@ -22,7 +22,7 @@ window.addEventListener("load", async ()=>{
             for ( let num=start;num <=end;num++){
                 let test = num.toString(10);
                 if ( test.length % 2 === 0 &&
-                    test.slice(0,test.length/2) === test.slice(test.length/2,test.length/2)){
+                    test.slice(0,test.length/2) === test.slice(test.length/2)){
                         numSumBadIDs += num;
                         arrResults.push("Bad ID: "+test);
                     }
