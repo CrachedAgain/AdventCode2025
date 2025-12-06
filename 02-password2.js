@@ -17,14 +17,26 @@ window.addEventListener("load", async ()=>{
     for (let i of arrData) {
         let r = reg.exec(i);
         if (r){
-            if ( r[1].toLowerCase()==="l"){
-                posLock = (posLock + 100 -  parseInt( r[2]) % 100) % 100;
+            let oldPosLock = posLock;
+            let oldPassword = password;
+            let rounds = parseInt( r[2]);
+            let goLeft = r[1].toLowerCase()==="l"; 
+            if ( goLeft ){
+                posLock = (posLock + 100 - rounds % 100) % 100;
             } else {
-                posLock = (posLock + parseInt( r[2])) % 100;
+                posLock = (posLock + rounds) % 100;
             }
             arrResults.push("Command "+i+" moves the lock to " + posLock.toString() );
-            if ( posLock === 0){
+            if ( rounds >= 100){
+                password += Math.floor(rounds/100);
+            }
+            if ( posLock === 0 ||
+                (goLeft && posLock > oldPosLock) ||
+                (!goLeft && posLock < oldPassword)
+            ){
                 password++;
+            }
+            if ( password !== oldPassword){
                 arrResults.push("New password value: "+ password.toString())
             }
         } else {
