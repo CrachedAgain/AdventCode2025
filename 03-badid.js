@@ -7,7 +7,7 @@ window.addEventListener("load", async ()=>{
     let r = await fetch("testfile-ID.txt");
     let data = await r.text();
     let arrData = data.split(",");
-    elemData.innerText = data.join("\r\n");
+    elemData.innerText = arrData.join("\r\n");
     let arrResults = [];
     let numSumBadIDs = 0;
     let 
