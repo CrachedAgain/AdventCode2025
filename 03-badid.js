@@ -10,7 +10,6 @@ window.addEventListener("load", async ()=>{
     elemData.innerText = arrData.join("\r\n");
     let arrResults = [];
     let numSumBadIDs = 0;
-    let 
 
     for (let i of arrData) {
         let r = i.trim().split("-");
