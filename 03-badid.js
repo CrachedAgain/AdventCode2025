@@ -34,5 +34,5 @@ window.addEventListener("load", async ()=>{
         }
     }
     elemResults.innerText = arrResults.join("\r\n");
-    elemassword.innerText = numSumBadIDs.toString();
+    elemSumIDs.innerText = numSumBadIDs.toString();
 });
