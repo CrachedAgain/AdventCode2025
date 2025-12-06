@@ -24,7 +24,7 @@ window.addEventListener("load", async ()=>{
             arrResults.push("Command "+i+" moves the lock to " + posLock.toString() );
             if ( posLock === 0){
                 password++;
-                arrResults.push("New password valus: "+ password.toString())
+                arrResults.push("New password value: "+ password.toString())
             }
         } else {
             if ( i !== ""){
