@@ -18,7 +18,7 @@ window.addEventListener("load", async ()=>{
                 !isNaN(parseInt(r[1], 10)) ){
             let start = parseInt(r[0]);
             let end = parseInt(r[1]);
-            arrResults.push("Testing range: "+i);
+            arrResults.push("Testing range: "+i.trim());
             for ( let num=start;num <=end;num++){
                 let test = num.toString(10);
                 if ( test.length % 2 === 0 &&
@@ -29,7 +29,7 @@ window.addEventListener("load", async ()=>{
             }
         } else {
             if ( i !== ""){
-                arrResults.push("Bad line: "+i)
+                arrResults.push("Bad line: "+i.trim())
             }
         }
     }
