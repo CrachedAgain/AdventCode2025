@@ -31,7 +31,7 @@ window.addEventListener("load", async ()=>{
                 password += Math.floor(rounds/100);
             }
             if ( posLock === 0 ||
-                (goLeft && oldPassword!== 0 && posLock > oldPosLock) ||
+                (goLeft && oldPosLock!== 0 && posLock > oldPosLock) ||
                 (!goLeft && posLock < oldPassword)
             ){
                 password++;
