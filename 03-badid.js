@@ -3,7 +3,7 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemSumIDs = document.getElementById("idSumBadID");
 
-    let r = await fetch("datafile.txt");
+    let r = await fetch("datafile-ID.txt");
 //    let r = await fetch("testfile-ID.txt");
     let data = await r.text();
     let arrData = data.split(",");
