@@ -32,7 +32,7 @@ window.addEventListener("load", async ()=>{
             }
             if ( posLock === 0 ||
                 (goLeft && oldPosLock!== 0 && posLock > oldPosLock) ||
-                (!goLeft && posLock < oldPassword)
+                (!goLeft && posLock < oldPosLock)
             ){
                 password++;
             }
