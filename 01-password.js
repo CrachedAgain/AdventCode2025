@@ -3,7 +3,8 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemassword = document.getElementById("idPassword");
 
-    let r = await fetch("datafile.txt");
+//    let r = await fetch("datafile.txt");
+    let r = await fetch("testfile.txt");
     let data = await r.text();
     elemData.innerText = data;
 
