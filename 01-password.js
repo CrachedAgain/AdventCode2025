@@ -9,7 +9,7 @@ window.addEventListener("load", async ()=>{
 
     let arrData = data.split(/\r|\n|\r\n/);
     let posLock = 50;
-    let reg = /^(L|R)([0-9]{1,})$/ig;
+    let reg = /^(L|R)([0-9]{1,})$/i;
     let arrResults = ["The lock starts at "+ posLock.toString()];
     let password = 0;
 
