@@ -33,5 +33,5 @@ window.addEventListener("load", async ()=>{
         }
     }
     elemResults.innerText = arrResults.join("\r\n");
-    elemassword.innerText = posLock.toString();
+    elemassword.innerText = password.toString();
 });
