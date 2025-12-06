@@ -21,7 +21,7 @@ window.addEventListener("load", async ()=>{
             arrResults.push("Testing range: "+i.trim());
             for ( let num=start;num <=end;num++){
                 let test = num.toString(10);
-                for ( let lenSlice=1; lenSlice*lenSlice <= test.length; lenSlice++){
+                for ( let lenSlice=1; lenSlice <= test.length/2; lenSlice++){
                     if (    test.length % lenSlice === 0 &&
                             test.slice(0,lenSlice).repeat(test.length/lenSlice) === test){
                         numSumBadIDs += num;
