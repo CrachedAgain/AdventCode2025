@@ -36,5 +36,5 @@ window.addEventListener("load", async ()=>{
         }
     }
     elemResults.innerText = arrResults.join("\r\n");
-    elemSumIDs.innerText = numSumBadIDs.toString();
+    elemSumIDs.innerText = numTotals.toString();
 });
