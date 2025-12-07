@@ -20,7 +20,7 @@ window.addEventListener("load", async ()=>{
                 if (len > 1){
                     rest = findLargestBatteries(pack.slice(found+1),len-1);
                 }
-                return i[found] + rest;
+                return search[found] + rest;
             }
         }
     }
