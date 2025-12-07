@@ -3,8 +3,8 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemSumIDs = document.getElementById("idSum");
 
-//    let r = await fetch("datafile-batt.txt");
-    let r = await fetch("testfile-batt.txt");
+    let r = await fetch("datafile-batt.txt");
+//    let r = await fetch("testfile-batt.txt");
     let data = await r.text();
     let arrData = data.split(/\r|\n|\r\n/).map( e=>e.trim() ).filter( e=>e!=="" );
     elemData.innerText = arrData.join("\r\n");
