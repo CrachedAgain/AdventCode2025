@@ -3,8 +3,8 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemSumIDs = document.getElementById("idSum");
 
-    let r = await fetch("datafile-paper.txt");
-//    let r = await fetch("testfile-paper.txt");
+//    let r = await fetch("datafile-paper.txt");
+    let r = await fetch("testfile-paper.txt");
     let data = await r.text();
     let arrData = data.split(/\r|\n|\r\n/).map( e=>e.trim() ).filter( e=>e!=="" );
     elemData.innerText = arrData.join("\r\n");
@@ -39,26 +39,34 @@ window.addEventListener("load", async ()=>{
         );
     }
 
-    for (let [y, line] of arrData.entries()) {
-        if ( /^[@.]+$/.test(line) && line.length === arrData[0].length){
-            let stack = "";
-            for ( let [x, char] of line.split("").entries()){
-                if ( char === "@"){
-                    if ( countNeighbors(arrData,x,y) < 4){
-                        numTotals++;
-                        stack+="x";
+    while (true){
+        let numRemoved = 0;
+        for (let [y, line] of arrData.entries()) {
+            if ( /^[@.]+$/.test(line) && line.length === arrData[0].length){
+                let stack = "";
+                for ( let [x, char] of line.split("").entries()){
+                    if ( char === "@"){
+                        if ( countNeighbors(arrData,x,y) < 4){
+                            numTotals++;
+                            numRemoved++;
+                            stack+="x";
+                        }else{
+                            stack+="@";
+                        }
                     }else{
-                        stack+="@";
+                        stack+="."
                     }
-                }else{
-                    stack+="."
                 }
+                arrResults.push("Data: "+stack);
+            } else {
+                arrResults.push("Bad line: "+line);
             }
-            arrResults.push("Data: "+stack);
-        } else {
-            arrResults.push("Bad line: "+line);
+        }
+        arrResults.push("Paper rolls removed: "+numRemoved);
+        elemResults.innerText = arrResults.join("\r\n");
+        if (numRemoved === 0){
+            break;
         }
     }
-    elemResults.innerText = arrResults.join("\r\n");
     elemSumIDs.innerText = numTotals.toString();
 });
