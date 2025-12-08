@@ -20,7 +20,7 @@ window.addEventListener("load", async ()=>{
         ) {
             return 0;
         } else {
-            return arr[y][x] === "@" ? 1 : 0;
+            return (arr[y][x] === "@" || arr[y][x] === "x") ? 1 : 0;
         }
     }
 
@@ -41,6 +41,7 @@ window.addEventListener("load", async ()=>{
     debugger;
     while (true){
         let numRemoved = 0;
+        arrData = arrData.map( str=>str.replace("x","."))
         for (let [y, line] of arrData.entries()) {
             if ( /^[@.]+$/.test(line) && line.length === arrData[0].length){
                 let stack = "";
