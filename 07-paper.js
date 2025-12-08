@@ -3,8 +3,8 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemSumIDs = document.getElementById("idSum");
 
-//    let r = await fetch("datafile-paper.txt");
-    let r = await fetch("testfile-paper.txt");
+    let r = await fetch("datafile-paper.txt");
+//    let r = await fetch("testfile-paper.txt");
     let data = await r.text();
     let arrData = data.split(/\r|\n|\r\n/).map( e=>e.trim() ).filter( e=>e!=="" );
     elemData.innerText = arrData.join("\r\n");
@@ -38,7 +38,7 @@ window.addEventListener("load", async ()=>{
             countAtPos(arr, x+1 ,y+1)
         );
     }
-    debugger;
+//    debugger;
     while (true){
         let numRemoved = 0;
         arrData = arrData.map( str=>str.replace("x","."))
