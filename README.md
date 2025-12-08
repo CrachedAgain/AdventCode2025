@@ -9,3 +9,4 @@ Here are the parts:
 - [Bad IDs 2](04-badid2.html)
 - [Bad battery](05-battery.html)
 - [Bad battery 2](06-battery2.html)
+- [Paper](07-paper.html)
