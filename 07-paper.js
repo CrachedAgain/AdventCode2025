@@ -40,9 +40,9 @@ window.addEventListener("load", async ()=>{
     }
 
     for (let [y, line] of arrData.entries()) {
-        if ( /^[@.]+$/.test(data) && data.length === arrData[0].length){
+        if ( /^[@.]+$/.test(line) && line.length === arrData[0].length){
             let stack = "";
-            for ( let [x, char] of data.split("").entries()){
+            for ( let [x, char] of line.split("").entries()){
                 if ( char === "@"){
                     if ( countNeighbors(arrData,x,y) < 4){
                         numTotals++;
@@ -56,7 +56,7 @@ window.addEventListener("load", async ()=>{
             }
             arrResults.push("Data: "+stack);
         } else {
-            arrResults.push("Bad line: "+data);
+            arrResults.push("Bad line: "+line);
         }
     }
     elemResults.innerText = arrResults.join("\r\n");
