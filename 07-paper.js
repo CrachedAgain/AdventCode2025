@@ -50,6 +50,7 @@ window.addEventListener("load", async ()=>{
                             numTotals++;
                             numRemoved++;
                             stack+="x";
+                            arrData[y][x] = "x";
                         }else{
                             stack+="@";
                         }
