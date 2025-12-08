@@ -41,7 +41,7 @@ window.addEventListener("load", async ()=>{
 //    debugger;
     while (true){
         let numRemoved = 0;
-        arrData = arrData.map( str=>str.replace("x","."))
+        arrData = arrData.map( str=>str.replaceAll("x","."))
         for (let [y, line] of arrData.entries()) {
             if ( /^[@.]+$/.test(line) && line.length === arrData[0].length){
                 let stack = "";
