@@ -43,7 +43,7 @@ window.addEventListener("load", async ()=>{
         if ( /^[@.]+$/.test(data) && data.length === arrData[0].length){
             let stack = "";
             for ( let [x, char] of data.split("").entries()){
-                if ( char === "@"(){
+                if ( char === "@"){
                     if ( countNeighbors(arrData,x,y) < 4){
                         numTotals++;
                         stack+="x";
