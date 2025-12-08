@@ -38,7 +38,7 @@ window.addEventListener("load", async ()=>{
             countAtPos(arr, x+1 ,y+1)
         );
     }
-
+    debugger;
     while (true){
         let numRemoved = 0;
         for (let [y, line] of arrData.entries()) {
