@@ -50,7 +50,7 @@ window.addEventListener("load", async ()=>{
                             numTotals++;
                             numRemoved++;
                             stack+="x";
-                            arrData[y][x] = "x";
+                            arrData[y] = arrData[y].slice(0,x)+"x"+arrData[y].slice(x+1);
                         }else{
                             stack+="@";
                         }
