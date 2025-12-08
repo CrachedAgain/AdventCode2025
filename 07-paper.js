@@ -26,16 +26,16 @@ window.addEventListener("load", async ()=>{
 
     function countNeighbors(arr, x, y){
         return (
-            countAtPos(x-1 ,y-1) +
-            countAtPos(x   ,y-1) +
-            countAtPos(x+1 ,y-1) +
+            countAtPos(arr, x-1 ,y-1) +
+            countAtPos(arr, x   ,y-1) +
+            countAtPos(arr, x+1 ,y-1) +
 
-            countAtPos(x-1 ,y) +
-            countAtPos(x+1 ,y) +
+            countAtPos(arr, x-1 ,y) +
+            countAtPos(arr, x+1 ,y) +
 
-            countAtPos(x-1 ,y+1) +
-            countAtPos(x   ,y+1) +
-            countAtPos(x+1 ,y+1)
+            countAtPos(arr, x-1 ,y+1) +
+            countAtPos(arr, x   ,y+1) +
+            countAtPos(arr, x+1 ,y+1)
         );
     }
 
