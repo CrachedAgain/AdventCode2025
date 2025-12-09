@@ -22,7 +22,7 @@ window.addEventListener("load", async ()=>{
             let regResult = reRange.exec(i);
             if ( regResult){
                 arrFreshIngredientRanges.push([parseInt(regResult[1]), parseInt(regResult[2])]);
-                arrResults.push("Range: "+i)
+                arrResults.push("Range: "+i);
             } else {
                 doneRanges=true;
             }
@@ -30,9 +30,9 @@ window.addEventListener("load", async ()=>{
         if (doneRanges){
             let regResult = reIngredient.exec(i);
             if ( regResult ){
-                let numIngredient = parseInt(regResult[1])
+                let numIngredient = parseInt(regResult[1]);
                 arrIngredients.push( numIngredient);
-                arrResults.push("Ingredient: "+i)
+                arrResults.push("Ingredient: "+i);
                 for ( let j of arrFreshIngredientRanges){
                     if (    numIngredient >= j[0] &&
                             numIngredient <= j[1] ){
