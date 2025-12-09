@@ -10,3 +10,4 @@ Here are the parts:
 - [Bad battery](05-battery.html)
 - [Bad battery 2](06-battery2.html)
 - [Paper](07-paper.html)
+- [Paper 2](08-paper2.html)
