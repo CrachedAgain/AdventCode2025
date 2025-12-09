@@ -38,6 +38,7 @@ window.addEventListener("load", async ()=>{
                             numIngredient <= j[1] ){
                         numTotals++;
                         arrResults.push("fresh");
+                        break;
                     }
                 }
             } else {
