@@ -20,7 +20,7 @@ window.addEventListener("load", async ()=>{
         ) {
             return 0;
         } else {
-            return (arr[y][x] === "@" || arr[y][x] === "x") ? 1 : 0;
+            return arr[y][x] === "@" ? 1 : 0;
         }
     }
 
@@ -38,37 +38,27 @@ window.addEventListener("load", async ()=>{
             countAtPos(arr, x+1 ,y+1)
         );
     }
-//    debugger;
-    while (true){
-        let numRemoved = 0;
-        arrData = arrData.map( str=>str.replaceAll("x","."))
-        for (let [y, line] of arrData.entries()) {
-            if ( /^[@.]+$/.test(line) && line.length === arrData[0].length){
-                let stack = "";
-                for ( let [x, char] of line.split("").entries()){
-                    if ( char === "@"){
-                        if ( countNeighbors(arrData,x,y) < 4){
-                            numTotals++;
-                            numRemoved++;
-                            stack+="x";
-                            arrData[y] = arrData[y].slice(0,x)+"x"+arrData[y].slice(x+1);
-                        }else{
-                            stack+="@";
-                        }
+
+    for (let [y, line] of arrData.entries()) {
+        if ( /^[@.]+$/.test(line) && line.length === arrData[0].length){
+            let stack = "";
+            for ( let [x, char] of line.split("").entries()){
+                if ( char === "@"){
+                    if ( countNeighbors(arrData,x,y) < 4){
+                        numTotals++;
+                        stack+="x";
                     }else{
-                        stack+="."
+                        stack+="@";
                     }
+                }else{
+                    stack+="."
                 }
-                arrResults.push("Data: "+stack);
-            } else {
-                arrResults.push("Bad line: "+line);
             }
-        }
-        arrResults.push("Paper rolls removed: "+numRemoved);
-        elemResults.innerText = arrResults.join("\r\n");
-        if (numRemoved === 0){
-            break;
+            arrResults.push("Data: "+stack);
+        } else {
+            arrResults.push("Bad line: "+line);
         }
     }
+    elemResults.innerText = arrResults.join("\r\n");
     elemSumIDs.innerText = numTotals.toString();
 });
