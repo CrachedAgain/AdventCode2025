@@ -11,3 +11,5 @@ Here are the parts:
 - [Bad battery 2](06-battery2.html)
 - [Paper](07-paper.html)
 - [Paper 2](08-paper2.html)
+- [Cooking](09-cooking.html)
+- [Cooking 2](10-cooking2.html)
