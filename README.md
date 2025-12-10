@@ -13,3 +13,5 @@ Here are the parts:
 - [Paper 2](08-paper2.html)
 - [Cooking](09-cooking.html)
 - [Cooking 2](10-cooking2.html)
+- [Math](11-math.html)
+- [Math 2](12-math2.html)
