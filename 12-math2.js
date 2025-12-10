@@ -19,12 +19,13 @@ window.addEventListener("load", async ()=>{
 
     for (let index=0; index < arrColNumbers[0].length; index++){
         let number = arrColNumbers.map( e => e[index].trim() ).join("");
-        if ( number === ""){
+        if ( number !== ""){
+            arrNumbers.push(number);
+        }
+        if ( number === "" || index==arrColNumbers[0].length-1){
             arrNumbers.reverse();
             arrAllNumbers.push(arrNumbers);
             arrNumbers = [];
-        } else {
-            arrNumbers.push(number);
         }
     }
     for (let index=0; index < arrAllNumbers.length; index++){
