@@ -44,7 +44,7 @@ window.addEventListener("load", async ()=>{
         arrResults.push("Checking range "+range[0].toString()+"-"+range[1].toString());
         if ( range[0]>maximum){
             numNewIDs += range[1]-range[0];
-            if ( range[1]>range[0] ){
+            if ( range[1]===range[0] ){
                 numNewIDs++;
             }
             maximum=range[1];
