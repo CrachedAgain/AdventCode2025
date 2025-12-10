@@ -1,0 +1,27 @@
+window.addEventListener("load", async ()=>{
+    let elemData = document.getElementById("idListData");
+    let elemResults = document.getElementById("idResults");
+    let elemSumIDs = document.getElementById("idSum");
+
+//    let r = await fetch("datafile-math.txt");
+    let r = await fetch("testfile-math.txt");
+    let data = await r.text();
+    let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( e=> e.split(""));
+    elemData.innerText = arrData.map( e => e.join(" ")).join("\r\n");
+    debugger;
+    let arrResults = [];
+    let numTotals = 0;
+
+    for (let numProblem=0; numProblem < arrData[0].length; numProblem++){
+        let arrProblem = arrData.map( e => e[numProblem] );
+        let operation = arrProblem[ arrProblem.length-1 ];
+        let startValue = operation==="*" ? 1 : 0;
+        arrProblem = arrProblem.slice(0, arrProblem.length-1);
+        let numResult = arrProblem.reduce( (prev, cur)=> (operation==="*" ? prev*parseInt(cur) : prev+parseInt(cur)), startValue)
+        arrResults.push("Operation: "+ arrProblem.join(" "+operation+" ")+" = "+numResult.toString());
+        numTotals += numResult;
+    }
+
+    elemResults.innerText = arrResults.join("\r\n");
+    elemSumIDs.innerText = numTotals.toString();
+});
