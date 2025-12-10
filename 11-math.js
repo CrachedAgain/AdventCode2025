@@ -15,7 +15,7 @@ window.addEventListener("load", async ()=>{
         let arrProblem = arrData.map( e => e[numProblem] );
         let operation = arrProblem[ arrProblem.length-1 ];
         let startValue = operation==="*" ? 1 : 0;
-        arrProblem = arrProblem.slice( arrProblem.length-1);
+        arrProblem = arrProblem.slice(0, arrProblem.length-1);
         let numResult = arrProblem.reduce( (prev, cur)=> operation==="*" ? prev*cur : prev+cur, startValue)
         arrResults.push("Operation: "+ arrProblem.join(" "+operation+" ")+" = "+numResult.toString());
         numTotals += numResult;
