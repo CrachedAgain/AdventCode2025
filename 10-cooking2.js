@@ -23,7 +23,7 @@ window.addEventListener("load", async ()=>{
                 let start = parseInt(regResult[1]);
                 let end = parseInt(regResult[2]);
                 arrResults.push("Range: "+i);
-                arrFreshIngredientRanges.push([start, end]);
+                arrFreshIngredientRanges.push([Math.min(start, end),Math.max(start,end)]);
             } else {
                 doneRanges=true;
             }
@@ -43,10 +43,7 @@ window.addEventListener("load", async ()=>{
         let numNewIDs = 0;
         arrResults.push("Checking range "+range[0].toString()+"-"+range[1].toString());
         if ( range[0]>maximum){
-            numNewIDs += range[1]-range[0];
-            if ( range[1]===range[0] ){
-                numNewIDs++;
-            }
+            numNewIDs += range[1]-range[0]+1;
             maximum=range[1];
         } else if ( range[1]>maximum){
             numNewIDs += range[1]-maximum;
