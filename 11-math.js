@@ -11,7 +11,7 @@ window.addEventListener("load", async ()=>{
     let arrResults = [];
     let numTotals = 0;
 
-    for (let numProblem=0; numProblem < arrData.length; numProblem++){
+    for (let numProblem=0; numProblem < arrData[0].length; numProblem++){
         let arrProblem = arrData.map( e => e[numProblem] );
         let operation = arrProblem[ arrProblem.length-1 ];
         let startValue = operation==="*" ? 1 : 0;
