@@ -18,7 +18,7 @@ window.addEventListener("load", async ()=>{
     let arrAllNumbers=[];
 
     for (let index=0; index < arrColNumbers[0].length; index++){
-        let number = arrColNumbers.filter( e => e[index].trim() ).join("");
+        let number = arrColNumbers.map( e => e[index].trim() ).join("");
         if ( number === ""){
             arrNumbers.reverse();
             arrAllNumbers.push(arrNumbers);
