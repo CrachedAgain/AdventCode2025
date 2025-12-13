@@ -47,6 +47,7 @@ window.addEventListener("load", async ()=>{
         }    
         arrResults.push("Tree: "+ row.join("")+" Splits = "+numSplits.toString());
         numTotals += numSplits;
+        arrBeams = newArrBeams;
     }
 
     elemResults.innerText = arrResults.join("\r\n");
