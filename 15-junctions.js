@@ -38,7 +38,7 @@ window.addEventListener("load", async ()=>{
         }
         arrResults.push("Connected: "+ arrData[start[0]][start[1]].join(",")+" with "+arrData[end[0]][end[1]]+" Distance: "+ minDistance.toString());
         arrData[start[0]] = arrData[start[0]].concat( arrData[end[0]] );
-        arrData = arrData.slice(0,end).concat( arrData.slice(end+1,arrData.length));
+        arrData = arrData.slice(0,end[0]).concat( arrData.slice(end[0]+1,arrData.length));
     }
     arrData.sort( (a,b)=> b.length-a.length );
     for (let  circuit of arrData){
