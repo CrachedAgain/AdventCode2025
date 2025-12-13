@@ -6,7 +6,7 @@ window.addEventListener("load", async ()=>{
 //    let r = await fetch("datafile-junctions.txt");
     let r = await fetch("testfile-junctions.txt");
     let data = await r.text();
-    let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( e=> [e.split(",").map(parseInt)]);
+    let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( e=> [e.split(",").map(e => parseInt(e,10))]);
     elemData.innerText = arrData.map( e => e[0].join(",")).join("\r\n");
 
     let arrResults = [];
