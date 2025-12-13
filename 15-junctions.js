@@ -40,7 +40,7 @@ window.addEventListener("load", async ()=>{
         arrData[start[0]] = arrData[start[0]].concat( arrData[end[0]] );
         arrData = arrData.slice(0,end).concat( arrData.slice(end+1,arrData.length));
     }
-    arrData.sort( (a,b)=> a.length-b.length );
+    arrData.sort( (a,b)=> b.length-a.length );
     for (let  circuit of arrData){
         arrResults.push( circuit.map( p => p.join(",") ).join(" , "));
     }
