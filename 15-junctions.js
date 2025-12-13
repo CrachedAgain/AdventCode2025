@@ -8,7 +8,7 @@ window.addEventListener("load", async ()=>{
     let data = await r.text();
     let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( (e)=> {
         let p1 =  {
-            point: [e.split(",").map(e => parseInt(e,10))],
+            point: e.split(",").map(e => parseInt(e,10)),
             conn: [],
             circuit: [],
         };
