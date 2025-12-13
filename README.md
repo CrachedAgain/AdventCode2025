@@ -15,3 +15,5 @@ Here are the parts:
 - [Cooking 2](10-cooking2.html)
 - [Math](11-math.html)
 - [Math 2](12-math2.html)
+- [Manifold](13-manifold.html)
+- [Manifold2](14-manifold.html)
