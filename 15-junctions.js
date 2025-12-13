@@ -3,8 +3,14 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemSumIDs = document.getElementById("idSum");
 
-//    let r = await fetch("datafile-junctions.txt");
-    let r = await fetch("testfile-junctions.txt");
+    let testing=false , r, maxConnections;
+    if (testing){
+        r = await fetch("testfile-junctions.txt");
+        maxConnections = 10;
+    } else {
+        r = await fetch("datafile-junctions.txt");
+        maxConnections = 1000;
+    }
     let data = await r.text();
     let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( (e)=> {
         let p1 =  {
@@ -24,7 +30,6 @@ window.addEventListener("load", async ()=>{
         return Math.sqrt( (p1[0]-p2[0])**2 + (p1[1]-p2[1])**2 + (p1[2]-p2[2])**2)
     }
 
-    const maxConnections = 10;
     for (let connections = 0 ; connections < maxConnections ; connections++){
         let minDistance = undefined;
         let start = undefined;
