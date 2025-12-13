@@ -3,8 +3,8 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemSumIDs = document.getElementById("idSum");
 
-//    let r = await fetch("datafile-manifold.txt");
-    let r = await fetch("testfile-manifold.txt");
+    let r = await fetch("datafile-manifold.txt");
+//    let r = await fetch("testfile-manifold.txt");
     let data = await r.text();
     let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( e=> e.split(""));
     elemData.innerText = arrData.map( e => e.join("")).join("\r\n");
@@ -47,9 +47,9 @@ window.addEventListener("load", async ()=>{
         }
         numTimelines = newArrBeams.reduce( (prev,curr) => prev+curr,0);
         arrResults.push("Tree: "+ row.join("")+" Timelines = "+numTimelines.toString());
-        numTotals += numTimelines;
         arrBeams = newArrBeams;
     }
+    numTotals += numTimelines;
 
     elemResults.innerText = arrResults.join("\r\n");
     elemSumIDs.innerText = numTotals.toString();
