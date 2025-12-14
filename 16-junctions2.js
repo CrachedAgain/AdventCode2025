@@ -3,7 +3,7 @@ window.addEventListener("load", async ()=>{
     let elemResults = document.getElementById("idResults");
     let elemSumIDs = document.getElementById("idSum");
 
-    let testing=true;
+    let testing=false;
     let r;
     if (testing){
         r = await fetch("testfile-junctions.txt");
