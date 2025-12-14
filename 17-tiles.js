@@ -6,9 +6,9 @@ window.addEventListener("load", async ()=>{
     let testing=true;
     let r;
     if (testing){
-        r = await fetch("testfile-junctions.txt");
+        r = await fetch("testfile-tiles.txt");
     } else {
-        r = await fetch("datafile-junctions.txt");
+        r = await fetch("datafile-tiles.txt");
     }
     let data = await r.text();
     let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( (e)=> {
