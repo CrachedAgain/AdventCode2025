@@ -32,7 +32,7 @@ window.addEventListener("load", async ()=>{
             let p2 = arrData[numP2Row];
             if ( !maxSize || 
                 getSize(p1,p2)>maxSize){
-                maxSize = getSize(p1.point,p2.point);
+                maxSize = getSize(p1,p2);
                 start = numP1Row;
                 end = numP2Row;
             }
