@@ -19,3 +19,5 @@ Here are the parts:
 - [Manifold 2](14-manifold2.html)
 - [Junctions](15-junctions.html)
 - [Junctions 2](16-junctions2.html)
+- [Tiles](17-tiles.html)
+- [Tiles 2](18-tiles2.html)
