@@ -11,51 +11,42 @@ window.addEventListener("load", async ()=>{
     ){
         throw "OOPS";
     }
-    /**
-     * @var {boolean} testing
-     * @var {(Response|undefined)} r
-     */
 
-    let testing=true;
-    let r;
-    if (testing){
-        r = await fetch("testfile-tiles.txt");
-    } else {
-        r = await fetch("datafile-tiles.txt");
-    }
-    let data = await r.text();
-    let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( (e)=> {
-        return e.split(",").map(e => parseInt(e,10));
-    });
-    elemData.innerText = arrData.map( e => e.join(",")).join("\r\n");
-
+    /** 
+     * @typedef {number} xAxis 
+     * @typedef {number} yAxis
+    */
     class Point{
         /**
-         * @param {number} x
-         * @param {number} y
+         * @param {xAxis} x
+         * @param {yAxis} y
          */
         constructor(x,y){
-            /**@type {number} */
+            /** @type {xAxis} */
             this.x = x;
-            /**@type {number} */
+            /** @type {yAxis} */
             this.y = y;
+        }
+        /** @returns {string} */
+        get stringValue(){
+            return this.x.toString()+","+this.y.toString();
         }
     }
     const UP=0, DOWN=1, LEFT=2, RIGHT=3;
     class HLine {
         /**
-         * @param {number} x1
-         * @param {number} x2
-         * @param {number} y
+         * @param {xAxis} x1
+         * @param {xAxis} x2
+         * @param {yAxis} y
          * @param {(UP|DOWN)} inside
          * 
          */
         constructor(x1,x2,y,inside){
-            /** @type {number} */
-            this.x1 = Math.min(x1,x2);
-            /** @type {number} */
-            this.x2 = Math.max(x1,x2);
-            /** @type {number} */
+            /** @type {xAxis} */
+            this.xLeft = Math.min(x1,x2);
+            /** @type {xAxis} */
+            this.xRight = Math.max(x1,x2);
+            /** @type {yAxis} */
             this.y = y;
             /** @type {(UP|DOWN)} */
             this.inside = inside;
@@ -70,42 +61,144 @@ window.addEventListener("load", async ()=>{
          */
         overlaps(p1, p2 ){
             if ( p1.x !== p2.x && p1.y !== p2.y){
-                throw "Non aligned line";
+                throw "Non vertical/horizontal line";
             }
             if ( p1.x === p2.x ){
                 return (
-                    p1.x >
+                    p1.x > this.xLeft &&
+                    p1.x < this.xRight &&
                     Math.min( p1.y, p2.y) < this.y &&
                     Math.max( p1.y, p2.y) > this.y
                 )
             }
-
-        }
-    }
-    let arrResults = [];
-    let numTotals = 0;
-
-    function getSize(p1, p2){
-        return Math.abs(p1[0]-p2[0]+1) * Math.abs(p1[1]-p2[1]+1);
-    }
-
-    let maxSize = undefined;
-    let start = undefined;
-    let end = undefined;
-    for ( let numP1Row = 0; numP1Row < arrData.length; numP1Row++){
-        let p1 = arrData[numP1Row];
-        for ( let numP2Row = numP1Row+1; numP2Row < arrData.length; numP2Row++){
-            let p2 = arrData[numP2Row];
-            if ( !maxSize || 
-                getSize(p1,p2)>maxSize){
-                maxSize = getSize(p1,p2);
-                start = numP1Row;
-                end = numP2Row;
+            if ( Math.abs(this.y - p1.y) < 2 &&
+                 Math.min(p1.x, p2.x) < this.xRight &&
+                 Math.max(p1.x, p2.x) > this.xLeft){
+                    return true;
             }
         }
+
+        /**
+         * @retuns {Point}
+         */
+        get p1(){
+            return new Point(this.xLeft,this.y);
+        }
+
+        /**
+         * @retuns {Point}
+         */
+        get p2(){
+            return new Point(this.xRight,this.y);
+        }
     }
-    arrResults.push("Largest square: "+ arrData[start].join(",")+" with "+arrData[end].join(",")+" Size: "+ maxSize.toString());
-    numTotals = maxSize;
+    class VLine{
+        /**
+         * @param {xAxis} x
+         * @param {yAxis} y1
+         * @param {yAxis} y2
+         * @param {(LEFT|RIGHT)} inside
+         * 
+         */
+        constructor(x,y1,y2,inside){
+            /** @type {xAxis} */
+            this.x = x;
+            /** @type {yAxis} */
+            this.yBottom = Math.min(y1,y2);
+            /** @type {yAxis} */
+            this.yTop = Math.max(y1,y2);
+            /** @type {(LEFT|RIGHT)} */
+            this.inside = inside;
+        }
+
+        isRightLine() {
+            return this.inside === LEFT;
+        }
+        /** 
+         * @param {Point} p1
+         * @param {Point} p2
+         */
+        overlaps(p1, p2 ){
+            if ( p1.x !== p2.x && p1.y !== p2.y){
+                throw "Non vertical/horizontal line";
+            }
+            if ( p1.y === p2.y ){
+                return (
+                    p1.y > this.yBottom &&
+                    p1.y < this.yTop &&
+                    Math.min( p1.x, p2.x) < this.x &&
+                    Math.max( p1.x, p2.x) > this.x
+                )
+            }
+            if ( Math.abs(this.x - p1.x) < 2 &&
+                 Math.min(p1.y, p2.y) < this.yTop &&
+                 Math.max(p1.y, p2.y) > this.yBottom){
+                    return true;
+            }
+        }
+
+        /**
+         * @retuns {Point}
+         */
+        get p1(){
+            return new Point(this.x,this.yBottom);
+        }
+
+        /**
+         * @retuns {Point}
+         */
+        get p2(){
+            return new Point(this.x,this.yTop);
+        }
+
+    }
+
+    /**
+     * @var {boolean} testing
+     * @var {(Response|undefined)} r
+     */
+
+    let testing=true;
+    let r;
+    if (testing){
+        r = await fetch("testfile-tiles.txt");
+    } else {
+        r = await fetch("datafile-tiles.txt");
+    }
+    let data = await r.text();
+    let arrData = data.split(/\r|\n|\r\n/).filter( e=>e.trim()!=="" ).map( (e)=> {
+        let p =e.split(","); 
+        return new Point( parseInt(p[0],10), parseInt(p[1],10));
+    });
+    elemData.innerText = arrData.map( e => e.stringValue).join("\r\n");
+
+    let numTotals = 0;
+    /** @type {string[]} */
+    let arrResults = [];
+
+    /** @type {HLine[]} */
+    let arrTop = [];
+    /** @type {HLine[]} */
+    let arrBottom = [];
+    /** @type {VLine[]} */
+    let arrLeft = [];
+    /** @type {VLine[]} */
+    let arrRight = [];
+
+    /**
+     * 
+     * @param {Point} p1 
+     * @param {Point} p2 
+     * @returns 
+     */
+    function getSize(p1, p2){
+        return Math.abs(p1.x-p2.x+1) * Math.abs(p1.y-p2.y+1);
+    }
+
+    let topIndex = 0;
+
+    arrResults.push("No values yet");
+//    numTotals = maxSize;
 
     elemResults.innerText = arrResults.join("\r\n");
     elemSumIDs.innerText = numTotals.toString();
