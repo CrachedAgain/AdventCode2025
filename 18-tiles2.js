@@ -326,6 +326,8 @@ window.addEventListener("load", async ()=>{
             throw "Bad line data";
         }
         arrTempData.push(line);
+        oldDirection = newDirection;
+        oldInside = newInside;
     }
     arrResults.push("No values yet");
 //    numTotals = maxSize;
