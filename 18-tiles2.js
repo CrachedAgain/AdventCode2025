@@ -329,6 +329,17 @@ window.addEventListener("load", async ()=>{
         oldDirection = newDirection;
         oldInside = newInside;
     }
+
+    for (let loopOuter=0 ; loopOuter < arrTempData.length; loopOuter++){
+        let p1 = arrTempData[loopOuter].p1;
+        let p2 = arrTempData[loopOuter].p2;
+        for ( let loopInner=loopOuter+1; loopInner <arrTempData.length; loopInner++){
+            if ( arrTempData[loopInner].overlaps(p1, p2)){
+                throw "Bad dataset";
+            }
+        }
+    }
+
     arrResults.push("No values yet");
 //    numTotals = maxSize;
 
